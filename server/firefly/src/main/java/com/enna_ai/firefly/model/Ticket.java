@@ -1,5 +1,6 @@
 package com.enna_ai.firefly.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -26,6 +27,7 @@ public class Ticket {
     private TicketStatus status;
 
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Comment> comments;
 
     @Column(name = "created_at")
@@ -89,5 +91,9 @@ public class Ticket {
 
     public void setStatus(TicketStatus status) {
         this.status = status;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
     }
 }

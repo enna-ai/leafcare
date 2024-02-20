@@ -1,5 +1,6 @@
 package com.enna_ai.firefly.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticket_id")
+    @JsonIgnore
     private Ticket ticket;
 
     @Column(name = "created_at")
@@ -44,6 +46,14 @@ public class Comment {
 
     public Comment(String content) {
         this.content = content;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 
     public UUID getId() {
