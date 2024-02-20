@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/tickets")
@@ -16,13 +18,36 @@ public class TicketController {
     @Autowired
     private TicketRepository repository;
 
+    @PostMapping
+    public ResponseEntity<?> addTicket(@RequestBody Ticket ticket) {
+        return new ResponseEntity<>(repository.save(ticket), HttpStatus.CREATED);
+    }
+
     @GetMapping
     public ResponseEntity<Collection<Ticket>> getAllTickets() {
         return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<?> addTicket(@RequestBody Ticket ticket) {
-        return new ResponseEntity<>(repository.save(ticket), HttpStatus.CREATED);
+    @GetMapping("/{id}")
+    public ResponseEntity<Ticket> getTicketById(@PathVariable UUID id) {
+        Ticket ticket = repository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Ticket ID not found: " + id));
+
+        return ResponseEntity.ok(ticket);
+    }
+
+    @GetMapping(params = {"title"})
+    public ResponseEntity<Collection<Ticket>> getTicketByTitle(@RequestParam(value = "title") String title) {
+        return new ResponseEntity<>(repository.findByTitle(title), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTicketById(@PathVariable UUID id) {
+        repository.deleteById(id);
+    }
+
+    @DeleteMapping
+    public void deleteAllTickets() {
+        repository.deleteAll();
     }
 }

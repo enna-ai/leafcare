@@ -3,15 +3,16 @@ package com.enna_ai.firefly.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tickets")
 public class Ticket {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @Column(name = "title")
     private String title;
@@ -32,6 +33,17 @@ public class Ticket {
     @Column(name = "last_updated_at")
     private LocalDateTime lastUpdatedAt;
 
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        lastUpdatedAt = createdAt;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        lastUpdatedAt = LocalDateTime.now();
+    }
+
     public Ticket() {
 
     }
@@ -45,8 +57,16 @@ public class Ticket {
         this.lastUpdatedAt = lastUpdatedAt;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getLastUpdatedAt() {
+        return lastUpdatedAt;
     }
 
     public String getTitle() {
@@ -79,21 +99,5 @@ public class Ticket {
 
     public void setComments(String comments) {
         this.comments = comments;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getLastUpdatedAt() {
-        return lastUpdatedAt;
-    }
-
-    public void setLastUpdatedAt(LocalDateTime lastUpdatedAt) {
-        this.lastUpdatedAt = lastUpdatedAt;
     }
 }
