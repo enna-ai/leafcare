@@ -3,6 +3,7 @@ package com.enna_ai.firefly.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -24,8 +25,8 @@ public class Ticket {
     @Column(name = "status")
     private TicketStatus status;
 
-    @Column(name = "comments")
-    private String comments;
+    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -48,13 +49,10 @@ public class Ticket {
 
     }
 
-    public Ticket(String title, String description, TicketStatus status, String comments, LocalDateTime createdAt, LocalDateTime lastUpdatedAt) {
+    public Ticket(String title, String description, TicketStatus status) {
         this.title = title;
         this.description = description;
         this.status = status;
-        this.comments = comments;
-        this.createdAt = createdAt;
-        this.lastUpdatedAt = lastUpdatedAt;
     }
 
     public UUID getId() {
@@ -91,13 +89,5 @@ public class Ticket {
 
     public void setStatus(TicketStatus status) {
         this.status = status;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
     }
 }
