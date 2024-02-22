@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, UUID> {
-    List<Ticket> findByTitle(String title);
+    List<Ticket> findBySubject(String subject);
 }

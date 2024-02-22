@@ -37,11 +37,6 @@ public class TicketController {
         return ResponseEntity.ok(ticket);
     }
 
-    @GetMapping(params = {"title"})
-    public ResponseEntity<Collection<Ticket>> getTicketByTitle(@RequestParam(value = "title") String title) {
-        return new ResponseEntity<>(repository.findByTitle(title), HttpStatus.OK);
-    }
-
     @DeleteMapping("/{id}")
     public void deleteTicketById(@PathVariable UUID id) {
         repository.deleteById(id);

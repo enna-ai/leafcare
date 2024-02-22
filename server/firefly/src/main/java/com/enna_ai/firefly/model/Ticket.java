@@ -5,7 +5,6 @@ import com.enna_ai.firefly.enums.TicketPriority;
 import com.enna_ai.firefly.enums.TicketStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,11 +19,16 @@ public class Ticket {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "subject")
+    private String subject;
 
     @Column(name = "description")
     private String description;
+
+    @ElementCollection
+    @CollectionTable(name = "images", joinColumns = @JoinColumn(name = "ticket_id"))
+    @Column(name = "image_url")
+    private List<String> images;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
@@ -62,8 +66,8 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(String title, String description, TicketPriority priority, TicketCategory category, TicketStatus status) {
-        this.title = title;
+    public Ticket(String subject, String description, TicketPriority priority, TicketCategory category, TicketStatus status) {
+        this.subject = subject;
         this.description = description;
         this.category = category;
         this.priority = priority;
@@ -82,12 +86,12 @@ public class Ticket {
         return lastUpdatedAt;
     }
 
-    public String getTitle() {
-        return title;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public String getDescription() {
@@ -96,6 +100,14 @@ public class Ticket {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     public TicketStatus getStatus() {
