@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -49,5 +50,19 @@ public class TicketController {
     @DeleteMapping
     public void deleteAllTickets() {
         repository.deleteAll();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Ticket> updateTicketById(@PathVariable UUID id, @RequestBody Ticket updatedTicket) {
+        return repository.findById(id)
+                .map(ticket -> {
+                    Optional.ofNullable(updatedTicket.getCategory()).ifPresent(ticket::setCategory);
+                    Optional.ofNullable(updatedTicket.getStatus()).ifPresent(ticket::setStatus);
+                    Optional.ofNullable(updatedTicket.getPriority()).ifPresent(ticket::setPriority);
+
+                    Ticket editedTicket = repository.save(ticket);
+                    return ResponseEntity.ok(editedTicket);
+                })
+                .orElseThrow(() -> new NoSuchElementException("Ticket ID not found:" + id));
     }
 }
