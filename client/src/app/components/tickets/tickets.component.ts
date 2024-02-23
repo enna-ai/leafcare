@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tickets',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './tickets.component.html',
-  styleUrls: ['./tickets.component.scss']
+  styleUrl: './tickets.component.scss'
 })
 export class TicketsComponent {
 
