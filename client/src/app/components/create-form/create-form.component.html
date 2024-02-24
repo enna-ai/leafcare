@@ -1,4 +1,4 @@
-<form>
+<form (submit)="formSubmit($event)">
   <label>Your email address</label>
   <input type="email" id="email" name="email" required>
 
@@ -6,16 +6,16 @@
   <input type="text" id="username" name="username" required>
 
   <label>Type of report</label>
-  <select>
+  <select id="category" name="category" required>
     <option>-</option>
-    <option>hate speech</option>
-    <option>stalking</option>
-    <option>impersonation</option>
-    <option>cyberbullying</option>
-    <option>threats of violence</option>
-    <option>sexual harassment</option>
-    <option>privacy violation</option>
-    <option>other</option>
+    <option value="HATE_SPEECH">hate speech</option>
+    <option value="STALKING">stalking</option>
+    <option value="IMPERSONATION">impersonation</option>
+    <option value="CYBERBULLYING">cyberbullying</option>
+    <option value="THREATS_OF_VIOLENCE">threats of violence</option>
+    <option value="SEXUAL_HARASSMENT">sexual harassment</option>
+    <option value="PRIVACY_VIOLATION">privacy violation</option>
+    <option value="OTHER">other</option>
   </select>
 
   <label>Subject</label>
@@ -26,4 +26,5 @@
 
   <label>Attachments <span>(optional)</span></label>
   <input type="file" id="attachments" name="attachments" multiple>
+  <button type="submit">Submit</button>
 </form>

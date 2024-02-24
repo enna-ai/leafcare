@@ -3,17 +3,30 @@ import { Injectable, inject } from '@angular/core';
 import { Ticket } from '../interfaces/ticket.interface';
 import { environment } from '../../environments/environment';
 
+type CreateTicketDto = {
+  username: string;
+  email: string;
+  subject: string;
+  description: string;
+  images?: string[];
+  category: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
   http = inject(HttpClient);
 
-  createTicket(subject: string, description: string, images: string[]) {
-    return this.http.post<Ticket>(`${environment.apiBaseUrl}/tickets`, {
-      subject,
-      description,
-      images,
-    });
+  createTicket(ticket: CreateTicketDto) {
+    return this.http.post<Ticket>(
+      `${environment.apiBaseUrl}/tickets`, {
+        username: ticket.username,
+        email: ticket.email,
+        subject: ticket.subject,
+        description: ticket.description,
+        images: ticket.images,
+        category: ticket.category,
+      });
   }
 }
