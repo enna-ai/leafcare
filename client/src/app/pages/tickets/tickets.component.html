@@ -1,1 +1,9 @@
-<p>tickets works!</p>
+<section>
+  <h1>All Tickets</h1>
+
+  <div *ngIf="tickets.length > 0">
+    <div *ngFor="let ticket of tickets">
+      <p>{{ ticket.username }}</p>
+    </div>
+  </div>
+</section>

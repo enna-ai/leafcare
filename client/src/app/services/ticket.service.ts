@@ -19,7 +19,9 @@ export class TicketService {
   http = inject(HttpClient);
 
   getTickets() {
-    return this.http.get<Ticket[]>(`${environment.apiBaseUrl}/tickets`);
+    const data = this.http.get<Ticket[]>(`${environment.apiBaseUrl}/tickets`);
+    console.log("data", data);
+    return data;
   }
 
   createTicket(ticket: CreateTicketDto) {
