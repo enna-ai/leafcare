@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Ticket } from '../interfaces/ticket.interface';
 import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
 
 type CreateTicketDto = {
   username: string;
@@ -19,9 +20,7 @@ export class TicketService {
   http = inject(HttpClient);
 
   getTickets() {
-    const data = this.http.get<Ticket[]>(`${environment.apiBaseUrl}/tickets`);
-    console.log("data", data);
-    return data;
+    return this.http.get<Ticket[]>(`${environment.apiBaseUrl}/tickets`);
   }
 
   createTicket(ticket: CreateTicketDto) {
@@ -34,5 +33,9 @@ export class TicketService {
         images: ticket.images,
         category: ticket.category,
       });
+  }
+
+  viewTicket(ticketId: string): Observable<Ticket> {
+    return this.http.get<Ticket>(`${environment.apiBaseUrl}/tickets/${ticketId}`);
   }
 }

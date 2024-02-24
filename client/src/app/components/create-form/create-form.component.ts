@@ -33,7 +33,7 @@ export class CreateFormComponent {
     const usernameElement = form.elements.namedItem('username') as HTMLInputElement;
     const textAreaElement = form.elements.namedItem('description') as HTMLTextAreaElement;
     const optionElement = form.elements.namedItem('category') as HTMLOptionElement;
-    const subjectElement = form.elements.namedItem('username') as HTMLInputElement;
+    const subjectElement = form.elements.namedItem('subject') as HTMLInputElement;
     const imagesElement = form.elements.namedItem('attachments') as HTMLInputElement;
 
     const email = emailElement.value;
