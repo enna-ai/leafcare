@@ -28,7 +28,6 @@ export class HomeComponent {
         category
       }).subscribe({
         next: createdTicket => {
-          console.log("Ticket created", createdTicket);
           this.tickets.set([createdTicket, ...this.tickets()]);
         },
         error: error => {

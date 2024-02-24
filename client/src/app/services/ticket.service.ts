@@ -18,6 +18,10 @@ type CreateTicketDto = {
 export class TicketService {
   http = inject(HttpClient);
 
+  getTickets() {
+    return this.http.get<Ticket[]>(`${environment.apiBaseUrl}/tickets`);
+  }
+
   createTicket(ticket: CreateTicketDto) {
     return this.http.post<Ticket>(
       `${environment.apiBaseUrl}/tickets`, {
