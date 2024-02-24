@@ -14,6 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/tickets")
+@CrossOrigin(origins = "*")
 public class TicketController {
 
     @Autowired
