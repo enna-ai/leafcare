@@ -23,6 +23,10 @@ export class TicketService {
     return this.http.get<Ticket[]>(`${environment.apiBaseUrl}/tickets`);
   }
 
+  viewTicket(ticketId: string): Observable<Ticket> {
+    return this.http.get<Ticket>(`${environment.apiBaseUrl}/tickets/${ticketId}`);
+  }
+
   createTicket(ticket: CreateTicketDto) {
     return this.http.post<Ticket>(
       `${environment.apiBaseUrl}/tickets`, {
@@ -33,9 +37,5 @@ export class TicketService {
         images: ticket.images,
         category: ticket.category,
       });
-  }
-
-  viewTicket(ticketId: string): Observable<Ticket> {
-    return this.http.get<Ticket>(`${environment.apiBaseUrl}/tickets/${ticketId}`);
   }
 }

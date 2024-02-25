@@ -2,7 +2,7 @@ package com.enna_ai.firefly.enums;
 
 public enum TicketCategory {
     HATE_SPEECH,
-    TROLLING,
+    CYBERBULLYING,
     STALKING,
     IMPERSONATION,
     THREATS_OF_VIOLENCE,

@@ -1,33 +1,72 @@
-<section>
-  <h1>All Tickets</h1>
+<section class="home-section">
+  <div>
+    <app-sidebar></app-sidebar>
+  </div>
 
-  <div *ngIf="tickets.length > 0">
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">Ticket ID</th>
-          <th scope="col">Username</th>
-          <th scope="col">Email</th>
-          <th scope="col">Subject</th>
-          <th scope="col">Category</th>
-          <th scope="col">Status</th>
-          <th scope="col">Priority</th>
-          <th scope="col">Created</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let ticket of tickets" (click)="viewTicket(ticket.id)">
-          <td><input type="checkbox" [value]="ticket.id" (change)="onCheckboxChange($event, ticket.id)"></td>
-          <td>{{ ticket.id.slice(0, 5)}}</td>
-          <td>{{ ticket.username }}</td>
-          <td>{{ ticket.email }}</td>
-          <td>{{ ticket.subject }}</td>
-          <td>{{ ticket.category }}</td>
-          <td>{{ ticket.status }}</td>
-          <td>{{ ticket.priority }}</td>
-          <td>{{ ticket.createdAt }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div>
+    <h1>All Tickets</h1>
+
+    <div *ngIf="tickets.length > 0">
+      <div *ngFor="let ticket of filteredTickets">
+        <input type="checkbox" [value]="ticket.id" (change)="onCheckboxChange($event, ticket.id)">
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Ticket ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Category</th>
+            <th scope="col">Status</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ticket of filteredTickets" (click)="viewTicket(ticket.id)">
+            <td>{{ ticket.id.slice(0, 5)}}</td>
+            <td>{{ ticket.username }}</td>
+            <td>{{ ticket.email }}</td>
+            <td>{{ ticket.subject }}</td>
+            <td>{{ ticket.category }}</td>
+            <td>{{ ticket.status }}</td>
+            <td>{{ ticket.priority }}</td>
+            <td>{{ ticket.createdAt }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- <div *ngIf="tickets.length > 0">
+      <div *ngFor="let ticket of tickets">
+        <input type="checkbox" [value]="ticket.id" (change)="onCheckboxChange($event, ticket.id)">
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Ticket ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Category</th>
+            <th scope="col">Status</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ticket of tickets" (click)="viewTicket(ticket.id)">
+            <td>{{ ticket.id.slice(0, 5)}}</td>
+            <td>{{ ticket.username }}</td>
+            <td>{{ ticket.email }}</td>
+            <td>{{ ticket.subject }}</td>
+            <td>{{ ticket.category }}</td>
+            <td>{{ ticket.status }}</td>
+            <td>{{ ticket.priority }}</td>
+            <td>{{ ticket.createdAt }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div> -->
   </div>
 </section>

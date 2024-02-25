@@ -1,0 +1,24 @@
+<div class="sidebar">
+  <ul class="nav-links" id="nav-links">
+    <li *ngFor="let item of menuSidebar" #itemEl>
+      <div *ngIf="item.submenu.length === 0" class="dropdown-title">
+        <a href="{{ item.link }}">
+          <span class="link_name">{{ item.title }}</span>
+        </a>
+      </div>
+      <div *ngIf="item.submenu.length > 0" class="dropdown-title" (click)="showSubmenu(itemEl)">
+        <a>
+          <span class="link_name">{{ item.title }}</span>
+        </a>
+      </div>
+      <ul class="sub-menu">
+        <li>
+          <a class="link_name">{{ item.title }}</a>
+        </li>
+        <li *ngFor="let subitem of item.submenu">
+          <a (click)="selectItem(subitem.value === 'ALL' ? 'null' : subitem.value)">{{ subitem.title }}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

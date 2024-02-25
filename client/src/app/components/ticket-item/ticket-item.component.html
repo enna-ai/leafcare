@@ -1,1 +1,27 @@
-<p>ticket-item works!</p>
+<section class="home-section">
+  <div>
+    <app-sidebar></app-sidebar>
+  </div>
+  <article *ngIf="ticket">
+    <div>
+      <h1>{{ ticket.subject }}</h1>
+      <p>{{ ticket.description }}</p>
+
+      <!-- TODO: fix image table later -->
+      <!-- <table>
+        <thead>
+          <tr>
+            <th>Attachments</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let image of ticket.images">
+            <td>
+              <img [src]="image" alt="Attachment">
+            </td>
+          </tr>
+        </tbody>
+      </table> -->
+    </div>
+  </article>
+</section>
