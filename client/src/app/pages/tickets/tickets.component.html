@@ -36,6 +36,9 @@
           </tr>
         </tbody>
       </table>
+
+      <mat-paginator [length]="filteredTickets.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page" (page)="onPageChange($event)">
+      </mat-paginator>
     </div>
   </div>
 </section>
