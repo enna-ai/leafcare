@@ -42,7 +42,7 @@ public class Ticket {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "priority")
-    private TicketPriority priority;
+    private TicketPriority priority = TicketPriority.NORMAL;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "category")
