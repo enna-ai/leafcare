@@ -1,30 +1,51 @@
+<h1>Create a ticket</h1>
+
 <form (submit)="formSubmit($event)">
-  <label>Your email address</label>
-  <input type="email" id="email" name="email" required>
+  <div class="form-group email-form">
+    <label>Your email address</label>
+    <input type="email" id="email" name="email" required>
+  </div>
 
-  <label>Your username</label>
-  <input type="text" id="username" name="username" required>
+  <div class="form-group username-form">
+    <label>Your username</label>
+    <input type="text" id="username" name="username" required>
+  </div>
 
-  <label>Type of report</label>
-  <select id="category" name="category" required>
-    <option>-</option>
-    <option value="HATE_SPEECH">hate speech</option>
-    <option value="CYBERBULLYING">cyberbullying</option>
-    <option value="STALKING">stalking</option>
-    <option value="IMPERSONATION">impersonation</option>
-    <option value="THREATS_OF_VIOLENCE">threats of violence</option>
-    <option value="SEXUAL_HARASSMENT">sexual harassment</option>
-    <option value="PRIVACY_VIOLATION">privacy violation</option>
-    <option value="OTHER">other</option>
-  </select>
+  <div class="form-group select-form">
+    <label>Type of report</label>
+    <select id="category" name="category" required>
+      <option value="HATE_SPEECH">hate speech</option>
+      <option value="CYBERBULLYING">cyberbullying</option>
+      <option value="STALKING">stalking</option>
+      <option value="IMPERSONATION">impersonation</option>
+      <option value="THREATS_OF_VIOLENCE">threats of violence</option>
+      <option value="SEXUAL_HARASSMENT">sexual harassment</option>
+      <option value="PRIVACY_VIOLATION">privacy violation</option>
+      <option value="OTHER">other</option>
+    </select>
+  </div>
 
-  <label>Subject</label>
-  <input type="text" id="subject" name="subject" required>
+  <div class="form-group subject-form">
+    <label>Subject</label>
+    <input type="text" id="subject" name="subject" accept=".png" required>
+  </div>
 
-  <label>Description</label>
-  <textarea id="description" name="description" required></textarea>
+  <div class="form-group desc-form">
+    <label>Description</label>
+    <textarea id="description" name="description" required></textarea>
+  </div>
 
-  <label>Attachments <span>(optional)</span></label>
-  <input type="file" id="attachments" name="attachments" multiple>
-  <button type="submit">Submit</button>
+  <div class="form-group attach-form">
+    <label>Attachments <span>(optional)</span></label>
+    <div class="attach-input-form">
+      <input type="file" id="attachments" name="attachments" multiple>
+      <span>
+        <a>Upload files</a>
+      </span>
+    </div>
+  </div>
+
+  <footer>
+    <input type="submit" value="submit">
+  </footer>
 </form>

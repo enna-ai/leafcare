@@ -46,12 +46,9 @@ export class TicketsComponent implements OnInit {
     } else {
       this.selectedTicket = this.selectedTicket.filter(id => id != ticketId);
     }
-
-    console.log("Selected ticket ids:", this.selectedTicket);
   }
 
   viewTicket(ticketId: string) {
-    console.log("Selected ID:", ticketId);
     this.router.navigate(["/tickets", ticketId]);
   }
 

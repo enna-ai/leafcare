@@ -28,6 +28,15 @@ $client-theme: mat.define-light-theme((
   )
 ));
 
+$horizontal-margin: 20%;
+$xxs: 12px;
+$xs: 14px;
+$sm: 16px;
+$md: 18px;
+$lg: 20px;
+$xl: 25px;
+$xxl: 32px;
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -38,6 +47,40 @@ $client-theme: mat.define-light-theme((
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+}
+
+html {
+  height: stretch;
+  height: fill-available;
+  height: -webkit-fill-available;
+  overflow-y: overlay;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  min-height: stretch;
+  min-height: fill-available;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+  color: #262626;
+
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+section {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 2% 5%;
 }
 
 .home-section {
@@ -75,5 +118,8 @@ $client-theme: mat.define-light-theme((
   color: white;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@media screen and (max-width: 800px) {
+  body {
+    $horizontal-margin: 5%;
+  }
+}
