@@ -32,6 +32,10 @@ form {
     text-indent: 10px;
     border-radius: 3px;
     border: 1px solid rgba(153, 170, 101, 0.3);
+
+    @media screen and (max-width: 800px) {
+      max-width: 100%;
+    }
   }
 
   .form-group > select, option {
@@ -86,5 +90,9 @@ footer {
     border: 0;
     border-radius: 4px;
     text-align: center;
+  }
+
+  @media screen and (max-width: 800px) {
+    max-width: 100%;
   }
 }
