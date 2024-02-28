@@ -1,4 +1,4 @@
-package com.enna_ai.firefly.model;
+package com.enna_ai.firefly.dto;
 
 import com.enna_ai.firefly.enums.TicketCategory;
 import com.enna_ai.firefly.enums.TicketPriority;
@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tickets")
-public class Ticket {
+public class TicketDto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -41,7 +41,7 @@ public class Ticket {
     private TicketStatus status = TicketStatus.OPEN;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "priority")
+    @Column(name = "status")
     private TicketPriority priority = TicketPriority.NORMAL;
 
     @Enumerated(EnumType.STRING)
@@ -50,7 +50,7 @@ public class Ticket {
 
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private List<Comment> comments;
+    private List<CommentDto> comments;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -67,19 +67,6 @@ public class Ticket {
     @PreUpdate
     protected void onUpdate() {
         lastUpdatedAt = LocalDateTime.now();
-    }
-
-    public Ticket() {
-    }
-
-    public Ticket(String username, String email, String subject, String description, TicketPriority priority, TicketCategory category, TicketStatus status) {
-        this.username = username;
-        this.email = email;
-        this.subject = subject;
-        this.description = description;
-        this.category = category;
-        this.priority = priority;
-        this.status = status;
     }
 
     public UUID getId() {
@@ -106,7 +93,7 @@ public class Ticket {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail() {
         this.email = email;
     }
 
@@ -160,7 +147,7 @@ public class Ticket {
         this.category = category;
     }
 
-    public List<Comment> getComments() {
+    public List<CommentDto> getComments() {
         return comments;
     }
 }

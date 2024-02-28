@@ -1,7 +1,7 @@
 package com.enna_ai.firefly.controller;
 
-import com.enna_ai.firefly.model.Comment;
-import com.enna_ai.firefly.model.Ticket;
+import com.enna_ai.firefly.dto.CommentDto;
+import com.enna_ai.firefly.dto.TicketDto;
 import com.enna_ai.firefly.repository.CommentRepository;
 import com.enna_ai.firefly.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/tickets/{ticketId}/comments")
+@RequestMapping("/api/v1/tickets/{ticketId}/comments")
 public class CommentController {
 
     @Autowired
@@ -23,27 +23,27 @@ public class CommentController {
     private TicketRepository ticketRepository;
 
     @PostMapping
-    public ResponseEntity<Comment> addCommentToTicket(@PathVariable UUID ticketId, @RequestBody Comment comment) {
-        Ticket ticket = ticketRepository.findById(ticketId)
+    public ResponseEntity<CommentDto> addCommentToTicket(@PathVariable UUID ticketId, @RequestBody CommentDto comment) {
+        TicketDto ticket = ticketRepository.findById(ticketId)
                 .orElseThrow(() -> new NoSuchElementException("Ticket ID not found: " + ticketId));
         comment.setTicket(ticket);
-        Comment savedComment = commentRepository.save(comment);
+        CommentDto savedComment = commentRepository.save(comment);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedComment);
     }
 
     @GetMapping
-    public ResponseEntity<List<Comment>> getAllCommentsForTicket(@PathVariable UUID ticketId) {
-        Ticket ticket = ticketRepository.findById(ticketId)
+    public ResponseEntity<List<CommentDto>> getAllCommentsForTicket(@PathVariable UUID ticketId) {
+        TicketDto ticket = ticketRepository.findById(ticketId)
                 .orElseThrow(() -> new NoSuchElementException("Ticket ID not found:" + ticketId));
 
-        List<Comment> comments = ticket.getComments();
+        List<CommentDto> comments = ticket.getComments();
         return ResponseEntity.ok(comments);
     }
 
     @GetMapping("{commentId}")
-    public ResponseEntity<Comment> getCommentById(@PathVariable UUID commentId) {
-        Comment comment = commentRepository.findById(commentId)
+    public ResponseEntity<CommentDto> getCommentById(@PathVariable UUID commentId) {
+        CommentDto comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new NoSuchElementException("Comment ID not found:" + commentId));
 
         return ResponseEntity.ok(comment);
@@ -51,7 +51,7 @@ public class CommentController {
 
     @DeleteMapping("{commentId}")
     public ResponseEntity<Void> deleteCommentById(@PathVariable UUID commentId) {
-        Comment comment = commentRepository.findById(commentId)
+        CommentDto comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new NoSuchElementException("Comment ID not found:" + commentId));
 
         commentRepository.delete(comment);
@@ -60,13 +60,13 @@ public class CommentController {
     }
 
     @PutMapping("{commentId}")
-    public ResponseEntity<Comment> updateCommentById(@PathVariable UUID commentId, @RequestBody Comment updatedComment) {
-        Comment comment = commentRepository.findById(commentId)
+    public ResponseEntity<CommentDto> updateCommentById(@PathVariable UUID commentId, @RequestBody CommentDto updatedComment) {
+        CommentDto comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new NoSuchElementException("Comment ID not found:" + commentId));
 
         comment.setContent(updatedComment.getContent());
 
-        Comment savedComment = commentRepository.save(comment);
+        CommentDto savedComment = commentRepository.save(comment);
 
         return ResponseEntity.ok(savedComment);
     }
