@@ -41,7 +41,7 @@ public class TicketDto {
     private TicketStatus status = TicketStatus.OPEN;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
+    @Column(name = "priority")
     private TicketPriority priority = TicketPriority.NORMAL;
 
     @Enumerated(EnumType.STRING)
@@ -93,7 +93,7 @@ public class TicketDto {
         return email;
     }
 
-    public void setEmail() {
+    public void setEmail(String email) {
         this.email = email;
     }
 

@@ -2,14 +2,13 @@ package com.enna_ai.firefly.controller;
 
 import com.enna_ai.firefly.dto.TicketDto;
 import com.enna_ai.firefly.repository.TicketRepository;
+import com.enna_ai.firefly.service.ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -17,12 +16,19 @@ import java.util.UUID;
 @CrossOrigin(origins = "*")
 public class TicketController {
 
+    private final TicketService ticketService;
+
     @Autowired
     private TicketRepository repository;
 
+    public TicketController(TicketService ticketService) {
+        this.ticketService = ticketService;
+    }
+
     @PostMapping
-    public ResponseEntity<?> createTicket(@RequestBody TicketDto ticket) {
-        return new ResponseEntity<>(repository.save(ticket), HttpStatus.CREATED);
+    public ResponseEntity<TicketDto> createTicket(@RequestBody TicketDto ticket) {
+        TicketDto createdTicket = ticketService.createTicket(ticket);
+        return new ResponseEntity<>(createdTicket, HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -32,33 +38,25 @@ public class TicketController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TicketDto> getTicketById(@PathVariable UUID id) {
-        TicketDto ticket = repository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Ticket ID not found: " + id));
-
+        TicketDto ticket = ticketService.getTicketById(id);
         return ResponseEntity.ok(ticket);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTicketById(@PathVariable UUID id) {
-        repository.deleteById(id);
+    public ResponseEntity<TicketDto> deleteTicketById(@PathVariable UUID id) {
+        ticketService.deleteTicketById(id);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping
-    public void deleteAllTickets() {
-        repository.deleteAll();
+    public ResponseEntity<TicketDto> deleteAllTickets() {
+        ticketService.deleteAllTickets();
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<TicketDto> updateTicketById(@PathVariable UUID id, @RequestBody TicketDto updatedTicket) {
-        return repository.findById(id)
-                .map(ticket -> {
-                    Optional.ofNullable(updatedTicket.getCategory()).ifPresent(ticket::setCategory);
-                    Optional.ofNullable(updatedTicket.getStatus()).ifPresent(ticket::setStatus);
-                    Optional.ofNullable(updatedTicket.getPriority()).ifPresent(ticket::setPriority);
-
-                    TicketDto editedTicket = repository.save(ticket);
-                    return ResponseEntity.ok(editedTicket);
-                })
-                .orElseThrow(() -> new NoSuchElementException("Ticket ID not found:" + id));
+        TicketDto editedTicket = ticketService.updateTicketById(id, updatedTicket);
+        return ResponseEntity.ok(editedTicket);
     }
 }
