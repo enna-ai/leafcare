@@ -1,4 +1,4 @@
-package com.enna_ai.firefly.dto;
+package com.enna_ai.firefly.model;
 
 import com.enna_ai.firefly.enums.TicketCategory;
 import com.enna_ai.firefly.enums.TicketPriority;
@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tickets")
-public class TicketDto {
+public class TicketModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -50,7 +50,7 @@ public class TicketDto {
 
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private List<CommentDto> comments;
+    private List<CommentModel> comments;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -147,7 +147,7 @@ public class TicketDto {
         this.category = category;
     }
 
-    public List<CommentDto> getComments() {
+    public List<CommentModel> getComments() {
         return comments;
     }
 }

@@ -1,5 +1,6 @@
-package com.enna_ai.firefly.dto;
+package com.enna_ai.firefly.model;
 
+import com.enna_ai.firefly.model.TicketModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -8,7 +9,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "comments")
-public class CommentDto {
+public class CommentModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -18,7 +19,7 @@ public class CommentDto {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticket_id")
     @JsonIgnore
-    private TicketDto ticket;
+    private TicketModel ticket;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -40,11 +41,11 @@ public class CommentDto {
         lastUpdatedAt = LocalDateTime.now();
     }
 
-    public TicketDto getTicket() {
+    public TicketModel getTicket() {
         return ticket;
     }
 
-    public void setTicket(TicketDto ticket) {
+    public void setTicket(TicketModel ticket) {
         this.ticket = ticket;
     }
 

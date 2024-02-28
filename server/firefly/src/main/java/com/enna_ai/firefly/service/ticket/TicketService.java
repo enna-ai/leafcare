@@ -1,14 +1,14 @@
 package com.enna_ai.firefly.service.ticket;
 
-import com.enna_ai.firefly.dto.TicketDto;
+import com.enna_ai.firefly.model.TicketModel;
 
 import java.util.UUID;
 
 public interface TicketService {
-    TicketDto createTicket(TicketDto ticket);
-    TicketDto getTicketById(UUID id);
+    TicketModel createTicket(TicketModel ticket);
+    TicketModel getTicketById(UUID id);
 
-    TicketDto updateTicketById(UUID id, TicketDto updatedTicket);
+    TicketModel updateTicketById(UUID id, TicketModel updatedTicket);
     void deleteTicketById(UUID id);
     void deleteAllTickets();
 }

@@ -1,6 +1,6 @@
 package com.enna_ai.firefly.controller;
 
-import com.enna_ai.firefly.dto.TicketDto;
+import com.enna_ai.firefly.model.TicketModel;
 import com.enna_ai.firefly.repository.TicketRepository;
 import com.enna_ai.firefly.service.ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,37 +26,37 @@ public class TicketController {
     }
 
     @PostMapping
-    public ResponseEntity<TicketDto> createTicket(@RequestBody TicketDto ticket) {
-        TicketDto createdTicket = ticketService.createTicket(ticket);
+    public ResponseEntity<TicketModel> createTicket(@RequestBody TicketModel ticket) {
+        TicketModel createdTicket = ticketService.createTicket(ticket);
         return new ResponseEntity<>(createdTicket, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<Collection<TicketDto>> getAllTickets() {
+    public ResponseEntity<Collection<TicketModel>> getAllTickets() {
         return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TicketDto> getTicketById(@PathVariable UUID id) {
-        TicketDto ticket = ticketService.getTicketById(id);
+    public ResponseEntity<TicketModel> getTicketById(@PathVariable UUID id) {
+        TicketModel ticket = ticketService.getTicketById(id);
         return ResponseEntity.ok(ticket);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<TicketDto> deleteTicketById(@PathVariable UUID id) {
+    public ResponseEntity<TicketModel> deleteTicketById(@PathVariable UUID id) {
         ticketService.deleteTicketById(id);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping
-    public ResponseEntity<TicketDto> deleteAllTickets() {
+    public ResponseEntity<TicketModel> deleteAllTickets() {
         ticketService.deleteAllTickets();
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TicketDto> updateTicketById(@PathVariable UUID id, @RequestBody TicketDto updatedTicket) {
-        TicketDto editedTicket = ticketService.updateTicketById(id, updatedTicket);
+    public ResponseEntity<TicketModel> updateTicketById(@PathVariable UUID id, @RequestBody TicketModel updatedTicket) {
+        TicketModel editedTicket = ticketService.updateTicketById(id, updatedTicket);
         return ResponseEntity.ok(editedTicket);
     }
 }

@@ -1,6 +1,6 @@
 package com.enna_ai.firefly.service.ticket;
 
-import com.enna_ai.firefly.dto.TicketDto;
+import com.enna_ai.firefly.model.TicketModel;
 import com.enna_ai.firefly.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,13 +19,13 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public TicketDto getTicketById(UUID id) {
+    public TicketModel getTicketById(UUID id) {
         return ticketRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Ticket ID not found."));
     }
 
     @Override
-    public TicketDto createTicket(TicketDto ticket) {
+    public TicketModel createTicket(TicketModel ticket) {
         return ticketRepository.save(ticket);
     }
 
@@ -41,7 +41,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public TicketDto updateTicketById(UUID id, TicketDto updatedTicket) {
+    public TicketModel updateTicketById(UUID id, TicketModel updatedTicket) {
         return ticketRepository.findById(id)
                 .map(ticket -> {
                     Optional.ofNullable(updatedTicket.getCategory()).ifPresent(ticket::setCategory);
