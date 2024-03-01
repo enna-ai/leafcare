@@ -3,11 +3,12 @@ import { Component, inject, signal } from '@angular/core';
 import { CreateFormComponent } from '../../components/create-form/create-form.component';
 import { TicketService } from '../../services/ticket.service';
 import { Ticket } from '../../interfaces/ticket.interface';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, CreateFormComponent],
+  imports: [CommonModule, CreateFormComponent, HeaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

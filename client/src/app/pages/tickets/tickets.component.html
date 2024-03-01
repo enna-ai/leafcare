@@ -1,44 +1,53 @@
-<section class="home-section">
-  <div>
-    <app-sidebar></app-sidebar>
-  </div>
-
-  <div>
-    <h1>All Tickets</h1>
-
-    <div *ngIf="tickets.length > 0">
-      <div *ngFor="let ticket of filteredTickets">
-        <input type="checkbox" [value]="ticket.id" (change)="onCheckboxChange($event, ticket.id)">
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Ticket ID</th>
-            <th scope="col">Username</th>
-            <th scope="col">Email</th>
-            <th scope="col">Subject</th>
-            <th scope="col">Category</th>
-            <th scope="col">Status</th>
-            <th scope="col">Priority</th>
-            <th scope="col">Created</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let ticket of filteredTickets" (click)="viewTicket(ticket.id)">
-            <td>{{ ticket.id.slice(0, 5)}}</td>
-            <td>{{ ticket.username }}</td>
-            <td>{{ ticket.email }}</td>
-            <td>{{ ticket.subject }}</td>
-            <td>{{ ticket.category }}</td>
-            <td>{{ ticket.status }}</td>
-            <td>{{ ticket.priority }}</td>
-            <td>{{ ticket.createdAt }}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <mat-paginator [length]="filteredTickets.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page" (page)="onPageChange($event)">
-      </mat-paginator>
+<section>
+  <div class="page-section">
+    <div>
+      <app-sidebar></app-sidebar>
     </div>
+
+    <div>
+      <div *ngIf="tickets.length > 0">
+        <div class="container-tickets">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  <input type="checkbox">
+                </th>
+                <th scope="col">ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Category</th>
+                <th scope="col">Status</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Created</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let ticket of filteredTickets" (click)="viewTicket(ticket.id)">
+                <td>
+                  <input type="checkbox" [value]="ticket.id" (change)="onCheckboxChange($event, ticket.id)">
+                </td>
+                <td>{{ ticket.id.slice(0, 5)}}</td>
+                <td>{{ ticket.username }}</td>
+                <td>{{ ticket.email }}</td>
+                <td>{{ ticket.subject.slice(0, 20) + '...' }}</td>
+                <td>{{ formatString(ticket.category.toLowerCase()) }}</td>
+                <td>{{ formatString(ticket.status.toLowerCase()) }}</td>
+                <td>{{ ticket.priority.toLowerCase() }}</td>
+                <td>{{ formatDate(ticket.createdAt)}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- TODO: fix firstPage not a function error -->
+        <!-- <mat-paginator [length]="filteredTickets.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+          aria-label="Select page" (page)="onPageChange($event)">
+        </mat-paginator> -->
+      </div>
+    </div>
+
   </div>
 </section>

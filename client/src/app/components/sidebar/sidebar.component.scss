@@ -4,39 +4,20 @@
   left: 0;
   height: 100%;
   width: 260px;
-  background: red;
+  background: #e6e6fb;
   z-index: 100;
   transition: all 0.5s ease;
-}
-
-.sidebar.sidebar-close {
-  width: 60px;
-}
-
-.sidebar .logo-details {
-  width: 100%;
-  padding: 20px 10px 10px 10px;
-}
-
-.sidebar .logo-details .logo {
-  height: 40px;
-  width: 100%;
-  background-image: linear-gradient(to right, #ffa726, #ff5722);
-}
-
-.sidebar.sidebar-close .logo-details .logo {
-  border-radius: 3px;
+  border-radius: 4px;
+  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.084),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .sidebar .nav-links {
-  height: 100%;
-  width: 260px;
-  padding-bottom: 150px;
   overflow: auto;
-}
 
-.sidebar .nav-links::-webkit-scrollbar {
-  display: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .sidebar .nav-links li {
@@ -50,10 +31,7 @@
 
 .sidebar .nav-links li:hover {
   background: #ffa726;
-}
-
-.sidebar .nav-links li.active {
-  background-image: linear-gradient(to right, #ffa726, #ff5722);
+  border-radius: 4px;
 }
 
 .sidebar .nav-links .dropdown-title {
@@ -64,32 +42,22 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
+  padding: 0 4px;
 }
 
-.sidebar.sidebar-close .nav-links .dropdown-title {
-  width: 60px;
-}
-
-.sidebar .nav-links .dropdown-btn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-}
-
-.sidebar .nav-links li i {
+.sidebar .nav-links li span {
   height: 50px;
   min-width: 60px;
   text-align: center;
   line-height: 50px;
-  color: #ffa726;
+  // color: #ffa726;
   font-size: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.sidebar .nav-links li:hover i,
-.sidebar .nav-links li.active i {
+.sidebar .nav-links li:hover span,
+.sidebar .nav-links li.active span {
   color: white;
 }
 
@@ -107,7 +75,7 @@
 .sidebar .nav-links li a .link_name {
   font-size: 16px;
   font-weight: 600;
-  color: #ffa726;
+  color: #262626;
   transition: all 0.4s ease;
 }
 
@@ -123,6 +91,7 @@
 .sidebar .nav-links li .sub-menu {
   padding: 6px 6px 14px 70px;
   background: white;
+  // HERE
   display: none;
   transition: all 0.4s ease;
 }
@@ -134,7 +103,7 @@
 .sidebar .nav-links li .sub-menu a {
   color: #ffa726;
   font-size: 15px;
-  padding: 7px 0;
+  padding: 5px 0;
   white-space: nowrap;
   transition: all 0.3s ease;
 }

@@ -1,0 +1,15 @@
+<nav>
+  <div>
+    <a href="/">
+      <img src="assets/firefly.png" alt="firefly logo" [width]="45" [height]="45">
+    </a>
+  </div>
+
+  <ul>
+    <li *ngFor="let route of routes">
+      <a href="{{ route.path }}">{{ route.label }}</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="divider"></div>

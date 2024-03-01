@@ -6,7 +6,7 @@ form {
   display: flex;
   flex-direction: column;
   padding-top: 30px;
-  gap: 15px;
+  gap: 20px;
 
   .form-group {
     display: block;
@@ -31,7 +31,7 @@ form {
     width: 100%;
     text-indent: 10px;
     border-radius: 3px;
-    border: 1px solid rgba(153, 170, 101, 0.3);
+    border: 1px solid #e6e6fb;
 
     @media screen and (max-width: 800px) {
       max-width: 100%;
