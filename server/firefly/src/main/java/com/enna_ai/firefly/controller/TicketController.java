@@ -54,7 +54,7 @@ public class TicketController {
         String userEmail = ticket.getEmail();
 
         EmailModel emailModel = new EmailModel();
-        emailModel.setSender("annelee3322@gmail.com");
+        emailModel.setSender("firefly.tickets@gmail.com");
         emailModel.setRecipient(userEmail);
         emailModel.setSubject("Response to your ticket");
         emailModel.setBody(responseBody);
