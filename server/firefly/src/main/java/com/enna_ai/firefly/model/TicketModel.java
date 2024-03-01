@@ -3,7 +3,6 @@ package com.enna_ai.firefly.model;
 import com.enna_ai.firefly.enums.TicketCategory;
 import com.enna_ai.firefly.enums.TicketPriority;
 import com.enna_ai.firefly.enums.TicketStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -48,9 +47,9 @@ public class TicketModel {
     @Column(name = "category")
     private TicketCategory category;
 
-    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    private List<CommentModel> comments;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "ticket_id")
+    private List<EmailModel> emails;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -147,7 +146,7 @@ public class TicketModel {
         this.category = category;
     }
 
-    public List<CommentModel> getComments() {
-        return comments;
+    public List<EmailModel> getEmails() {
+        return emails;
     }
 }
