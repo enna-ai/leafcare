@@ -45,22 +45,22 @@ public class TicketController {
         return new ResponseEntity<>(createdTicket, HttpStatus.CREATED);
     }
 
-    @PostMapping("/response")
-    public ResponseEntity<String> sendTicketResponse(@RequestBody TicketResDto response) {
-        UUID ticketId = response.getTicketId();
-        String responseBody = response.getResponseBody();
+    @PostMapping("/{id}/response")
+    public ResponseEntity<String> sendTicketResponse(@PathVariable UUID id, @RequestBody EmailModel response) {
 
-        TicketModel ticket = ticketService.getTicketById(ticketId);
+        String responseBody = response.getBody();
+        TicketModel ticket = ticketService.getTicketById(id);
         String userEmail = ticket.getEmail();
 
         EmailModel emailModel = new EmailModel();
+        emailModel.setSender("annelee3322@gmail.com");
         emailModel.setRecipient(userEmail);
         emailModel.setSubject("Response to your ticket");
         emailModel.setBody(responseBody);
 
         emailService.sendEmail(emailModel);
 
-        return ResponseEntity.ok("Ticket response sent successfully.");
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping

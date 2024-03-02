@@ -23,7 +23,7 @@ public class EmailService {
     public void sendEmail(EmailModel emailModel) {
         try {
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, "UTF-8");
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
 
             mimeMessageHelper.setTo(emailModel.getRecipient());
             mimeMessageHelper.setFrom(emailModel.getSender());

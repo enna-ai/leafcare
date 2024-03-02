@@ -1,5 +1,6 @@
 package com.enna_ai.firefly.service.ticket;
 
+import com.enna_ai.firefly.dto.TicketResDto;
 import com.enna_ai.firefly.model.TicketModel;
 import com.enna_ai.firefly.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
