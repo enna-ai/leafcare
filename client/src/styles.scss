@@ -24,19 +24,11 @@ $client-theme: mat.define-light-theme((color: (primary: $client-primary,
         warn: $client-warn,
       )));
 
-$horizontal-margin: 20%;
-$xxs: 12px;
-$xs: 14px;
-$sm: 16px;
-$md: 18px;
-$lg: 20px;
-$xl: 25px;
-$xxl: 32px;
-
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($client-theme);
+@import 'variables';
 
 .material-symbols-outlined {
   font-variation-settings:
@@ -77,6 +69,7 @@ body {
   justify-content: flex-start;
   margin: 0;
   padding: 0;
+  background-color: $pale-grey;
   color: #262626;
 
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -86,7 +79,7 @@ body {
 nav {
   max-width: 1160px;
   margin: 0 auto;
-  padding: 5px 10px;
+  padding: 2% 5%;
   position: relative;
   top: 0;
   align-items: center;
@@ -106,30 +99,19 @@ nav {
 
     li {
       font-size: 16px;
-
-      a {
-        text-decoration: none;
-        text-align: center;
-        color: #262626;
-
-        &:hover,
-        &:focus {
-          outline: none;
-        }
-      }
     }
   }
 }
 
 .divider {
-  border-bottom: 1px solid #e6e6fb;
+  border-bottom: 1px solid $light-grey;
   margin-bottom: 20px;
 }
 
 section {
   max-width: 1160px;
   margin: 0 auto;
-  padding: 5px 10px;
+  padding: 2% 5%;
 }
 
 .page-section {
@@ -165,6 +147,19 @@ section {
   justify-content: center;
   flex-direction: column;
   color: white;
+}
+
+a {
+  color: #262626;
+  text-decoration: none;
+  text-align: center;
+  transition: $transition;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    color: $orange;
+  }
 }
 
 @media screen and (max-width: 800px) {

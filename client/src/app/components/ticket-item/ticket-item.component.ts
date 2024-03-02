@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
 import { Ticket } from '../../interfaces/ticket.interface';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { formatDate, formatString } from '../../../utils';
+
 @Component({
   selector: 'app-ticket-item',
   standalone: true,
@@ -30,5 +32,22 @@ export class TicketItemComponent implements OnInit {
 
   getTicket(ticketId: string): void {
     this.ticketService.viewTicket(ticketId).subscribe(ticket => this.ticket = ticket);
+  }
+
+  updateTicket(prop: string, value: string): void {
+    const ticketId = this.route.snapshot.paramMap.get('id');
+    if (!ticketId) {
+      return;
+    }
+
+    this.ticketService.updateTicket(ticketId, prop, value).subscribe(ticket => this.ticket = ticket);
+  }
+
+  formatDate(date: Date | string) {
+    return formatDate(date);
+  }
+
+  formatString(category: string) {
+    return formatString(category);
   }
 }

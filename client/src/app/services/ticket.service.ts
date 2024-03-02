@@ -38,4 +38,9 @@ export class TicketService {
         category: ticket.category,
       });
   }
+
+  updateTicket(ticketId: string, prop: string, value: string): Observable<Ticket> {
+    const body = { [prop]: value };
+    return this.http.put<Ticket>(`${environment.apiBaseUrl}/tickets/${ticketId}`, body);
+  }
 }

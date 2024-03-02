@@ -1,0 +1,118 @@
+@import '../../../variables.scss';
+
+.ticket-page-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .ticket-content-section {
+    display: flex;
+    flex-direction: column;
+    background-color: $white;
+    padding: 20px;
+    border-radius: $sm-radius;
+    border: $border;
+    gap: 10px;
+
+    .ticket-content-tags {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+
+      .ticket-content-tag {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+
+        h3 {
+          font-weight: 500;
+        }
+
+        h3, span {
+          font-size: 14px;
+          color: $dark-grey;
+        }
+      }
+    }
+
+    p {
+      padding-top: 15px;
+      color: $dark-grey;
+    }
+  }
+
+  hr {
+    border-top: $border;
+    border-bottom: transparent;
+    border-left: transparent;
+    border-right: transparent;
+  }
+
+  .ticket-response-section {
+    background-color: $white;
+    padding: 20px;
+    border-radius: $sm-radius;
+    border: $border;
+
+    .ticket-response-controls {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      gap: 30px;
+
+      .ticket-controls {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+
+        form {
+          display: flex;
+          gap: 10px;
+
+          .ticket-radios {
+            label {
+              padding-left: 5px;
+            }
+          }
+        }
+      }
+    }
+
+    .ticket-response-input {
+      form .ticket-response-box > textarea {
+        resize: none;
+        padding: 10px;
+        box-sizing: border-box;
+        max-width: 100%;
+        min-height: 200px;
+        width: 100%;
+        border-radius: 3px;
+        border: $border;
+      }
+
+      footer {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 10px;
+
+        input[type="submit"] {
+          font-size: 16px;
+          background: $dark-brown;
+          color: white;
+          cursor: pointer;
+          min-width: 100px;
+          padding: 0.8em;
+          border: 0;
+          border-radius: 4px;
+          text-align: center;
+
+          &:hover {
+            background: $darkest-brown;
+          }
+        }
+      }
+    }
+  }
+}

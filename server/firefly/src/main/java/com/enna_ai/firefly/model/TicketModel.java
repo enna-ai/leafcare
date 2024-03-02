@@ -37,11 +37,11 @@ public class TicketModel {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private TicketStatus status = TicketStatus.OPEN;
+    private TicketStatus status;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "priority")
-    private TicketPriority priority = TicketPriority.NORMAL;
+    private TicketPriority priority;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "category")
@@ -135,7 +135,9 @@ public class TicketModel {
     }
 
     public void setPriority(TicketPriority priority) {
-        this.priority = priority;
+        if (priority != null) {
+            this.priority = priority;
+        }
     }
 
     public TicketCategory getCategory() {

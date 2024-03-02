@@ -1,3 +1,8 @@
 <section>
-  <app-create-form (formSubmitted)="createTicket($event)"></app-create-form>
+  <app-create-form *ngIf="!ticketSubmitted" [ngClass]="{'hide-form': ticketSubmitted}" (formSubmitted)="createTicket($event)"></app-create-form>
+
+  <div *ngIf="ticketSubmitted" class="ticket-form-success show">
+    <h2>Your ticket was successfully submitted!</h2>
+    <p>Our team will get back to you in a flash.</p>
+  </div>
 </section>

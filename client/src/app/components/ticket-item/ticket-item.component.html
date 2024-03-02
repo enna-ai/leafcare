@@ -4,27 +4,98 @@
       <app-sidebar></app-sidebar>
     </div>
 
-    <div>
-      <article *ngIf="ticket">
+    <div class="ticket-page-section">
+      <div *ngIf="ticket" class="ticket-content-section">
         <h1>{{ ticket.subject }}</h1>
+        <div class="ticket-content-tags">
+          <div class="ticket-content-tag">
+            <span class="material-symbols-outlined">schedule</span>
+            <h3>Created {{ formatDate(ticket.createdAt) }}</h3>
+          </div>
+          <div class="ticket-content-tag">
+            <span class="material-symbols-outlined">sell</span>
+            <h3>{{ formatString(ticket.category.toLowerCase()) }}</h3>
+          </div>
+        </div>
+
+        <hr>
+
         <p>{{ ticket.description }}</p>
 
         <!-- TODO: fix image table later -->
         <!-- <table>
-              <thead>
-                <tr>
-                  <th>Attachments</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let image of ticket.images">
-                  <td>
-                    <img [src]="image" alt="Attachment">
-                  </td>
-                </tr>
-              </tbody>
-            </table> -->
-      </article>
+          <thead>
+            <tr>
+              <th>Attachments</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let image of ticket.images">
+              <td>
+                <img [src]="image" alt="Attachment">
+              </td>
+            </tr>
+          </tbody>
+        </table> -->
+      </div>
+
+      <div class="ticket-response-section">
+        <div *ngIf="ticket"  class="ticket-response-controls">
+          <div class="ticket-controls priority">
+            <div class="ticket-priority-label">
+              <h4>Priority</h4>
+            </div>
+            <div class="ticket-control-form">
+              <form>
+                <div class="ticket-radios">
+                  <input type="radio" id="ticket-priority-normal" name="ticket-priority" value="NORMAL" [checked]="ticket.priority === 'NORMAL'" (change)="updateTicket('priority', 'NORMAL')">
+                  <label for="ticket-priority-normal">Normal</label>
+                </div>
+                <div class="ticket-radios">
+                  <input type="radio" id="ticket-priority-medium" name="ticket-priority" value="MEDIUM" [checked]="ticket.priority === 'MEDIUM'" (change)="updateTicket('priority', 'MEDIUM')">
+                  <label for="ticket-priority-medium">Medium</label>
+                </div>
+                <div class="ticket-radios">
+                  <input type="radio" id="ticket-priority-high" name="ticket-priority" value="HIGH" [checked]="ticket.priority === 'HIGH'" (change)="updateTicket('priority', 'HIGH')">
+                  <label for="ticket-priority-high">High</label>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="ticket-controls status">
+            <div class="ticket-status-label">
+              <h4>Status</h4>
+            </div>
+            <div class="ticket-control-form">
+              <form>
+                <div class="ticket-radios">
+                  <input type="radio" id="ticket-status" name="ticket-status" value="OPEN" [checked]="ticket.status === 'OPEN'" (change)="updateTicket('status', 'OPEN')">
+                  <label>Open</label>
+                </div>
+                <div class="ticket-radios">
+                  <input type="radio" id="ticket-status" name="ticket-status" value="IN_PROGRESS" [checked]="ticket.status === 'IN_PROGRESS'" (change)="updateTicket('status', 'IN_PROGRESS')">
+                  <label>In Progress</label>
+                </div>
+                <div class="ticket-radios">
+                  <input type="radio" id="ticket-status" name="ticket-status" value="RESOLVED" [checked]="ticket.status === 'RESOLVED'" (change)="updateTicket('status', 'RESOLVED')">
+                  <label>Resolved</label>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-response-input">
+          <form>
+            <div class="ticket-response-box">
+              <textarea id="ticket-response" name="ticket-response" placeholder="Type your message..." required></textarea>
+            </div>
+          </form>
+          <footer>
+            <input type="submit" id="ticket-submit-reply" value="Reply">
+          </footer>
+        </div>
+      </div>
     </div>
   </div>
 </section>

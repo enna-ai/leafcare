@@ -38,11 +38,11 @@ export class SidebarComponent implements OnInit {
           link: null,
           value: "IN_PROGRESS",
         },
-        {
-          title: "Closed",
-          link: null,
-          value: "CLOSED",
-        },
+        // {
+        //   title: "Closed",
+        //   link: null,
+        //   value: "CLOSED",
+        // },
         {
           title: "Resolved",
           link: null,
