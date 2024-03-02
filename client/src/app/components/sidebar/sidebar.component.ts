@@ -17,11 +17,13 @@ export class SidebarComponent implements OnInit {
     {
       title: "Dashboard",
       link: "/dashboard",
+      icon: "dashboard",
       submenu: [],
     },
     {
       title: "Tickets",
       link: "/tickets",
+      icon: "confirmation_number",
       submenu: [
         {
           title: "All",
@@ -38,11 +40,6 @@ export class SidebarComponent implements OnInit {
           link: null,
           value: "IN_PROGRESS",
         },
-        // {
-        //   title: "Closed",
-        //   link: null,
-        //   value: "CLOSED",
-        // },
         {
           title: "Resolved",
           link: null,
@@ -53,6 +50,7 @@ export class SidebarComponent implements OnInit {
     {
       title: "Category",
       link: null,
+      icon: "category",
       submenu: [
         {
           title: "Hate Speech",

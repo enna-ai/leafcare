@@ -3,11 +3,13 @@
     <li *ngFor="let item of menuSidebar" #itemEl>
       <div *ngIf="item.submenu.length === 0" class="dropdown-title">
         <a href="{{ item.link }}">
+          <span class="material-symbols-outlined">{{ item.icon }}</span>
           <span class="link_name">{{ item.title }}</span>
         </a>
       </div>
       <div *ngIf="item.submenu.length > 0" class="dropdown-title" (click)="showSubmenu(itemEl)">
         <a>
+          <span class="material-symbols-outlined">{{ item.icon }}</span>
           <span class="link_name">{{ item.title }}</span>
         </a>
         <span class="material-symbols-outlined">expand_more</span>

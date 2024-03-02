@@ -30,14 +30,6 @@ $client-theme: mat.define-light-theme((color: (primary: $client-primary,
 @include mat.all-component-themes($client-theme);
 @import 'variables';
 
-.material-symbols-outlined {
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -119,7 +111,6 @@ section {
   height: 100vh;
   left: 140px;
   width: calc(100% - 80px);
-  transition: all 0.5s ease;
   display: flex;
   flex-direction: column;
 }
@@ -158,7 +149,6 @@ a {
   &:hover,
   &:focus {
     outline: none;
-    color: $orange;
   }
 }
 

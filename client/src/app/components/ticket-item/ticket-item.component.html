@@ -5,6 +5,13 @@
     </div>
 
     <div class="ticket-page-section">
+      <div class="ticket-page-back-btn">
+        <button (click)="backButton()">
+          <span class="material-symbols-outlined">chevron_left</span>
+          <p>Back</p>
+        </button>
+      </div>
+
       <div *ngIf="ticket" class="ticket-content-section">
         <h1>{{ ticket.subject }}</h1>
         <div class="ticket-content-tags">
@@ -86,14 +93,14 @@
           </div>
         </div>
         <div class="ticket-response-input">
-          <form>
+          <form (submit)="responseSubmit($event)">
             <div class="ticket-response-box">
               <textarea id="ticket-response" name="ticket-response" placeholder="Type your message..." required></textarea>
             </div>
+            <footer>
+              <input type="submit" id="ticket-submit-reply" value="Reply">
+            </footer>
           </form>
-          <footer>
-            <input type="submit" id="ticket-submit-reply" value="Reply">
-          </footer>
         </div>
       </div>
     </div>

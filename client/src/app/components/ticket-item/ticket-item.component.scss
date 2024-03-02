@@ -5,6 +5,27 @@
   flex-direction: column;
   gap: 20px;
 
+  .ticket-page-back-btn {
+    button {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      border: 0;
+      background: $light-grey;
+      cursor: pointer;
+      border-radius: 4px;
+      padding: 6px 12px;
+
+      span {
+        font-size: 24px;
+      }
+
+      p {
+        margin-right: 8px;
+      }
+    }
+  }
+
   .ticket-content-section {
     display: flex;
     flex-direction: column;
@@ -75,6 +96,10 @@
             label {
               padding-left: 5px;
             }
+          }
+
+          input[type="radio"]:checked {
+            accent-color: $brown;
           }
         }
       }
