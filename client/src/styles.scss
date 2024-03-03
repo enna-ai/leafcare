@@ -30,6 +30,29 @@ $client-theme: mat.define-light-theme((color: (primary: $client-primary,
 @include mat.all-component-themes($client-theme);
 @import 'variables';
 
+*::-webkit-scrollbar {
+  width: thin;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: red;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 100%;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $dark-cream;
+  border: 3px solid $cream;
+  border-radius: 10px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -50,6 +73,9 @@ body {
 }
 
 body {
+  background-color: $cream;
+  color: $dark-black;
+
   width: 100%;
   min-height: 100vh;
   min-height: -webkit-fill-available;
@@ -61,23 +87,29 @@ body {
   justify-content: flex-start;
   margin: 0;
   padding: 0;
-  background-color: $pale-grey;
-  color: #262626;
 
   font-family: Roboto, "Helvetica Neue", sans-serif;
   word-spacing: 2px;
 }
 
 nav {
-  max-width: 1160px;
   margin: 0 auto;
-  padding: 2% 5%;
+  padding: 2% 14%;
   position: relative;
   top: 0;
   align-items: center;
   display: flex;
   height: 64px;
   justify-content: space-between;
+  background: $dark-cream;
+  border-bottom: $border;
+
+  div {
+    a, .material-symbols-outlined {
+      font-size: 40px;
+      color: $dark-black;
+    }
+  }
 
   ul {
     display: flex;
@@ -89,15 +121,11 @@ nav {
     list-style-type: none;
     gap: 30px;
 
-    li {
+    li, a {
       font-size: 16px;
+      color: $dark-black;
     }
   }
-}
-
-.divider {
-  border-bottom: 1px solid $light-grey;
-  margin-bottom: 20px;
 }
 
 section {
@@ -109,35 +137,9 @@ section {
 .page-section {
   position: relative;
   height: 100vh;
-  left: 140px;
-  width: calc(100% - 80px);
-  display: flex;
-  flex-direction: column;
-}
-
-.page-section .page-header {
-  height: 80px;
-  display: flex;
-  align-items: center;
-}
-
-.page-section .page-header .title {
-  color: white;
-  font-size: 35px;
-}
-
-.page-section .page-header .title {
-  font-size: 26px;
-  font-weight: 600;
-}
-
-.page-section .page-view {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  color: white;
+  left: 260px;
+  width: calc(100% - 260px);
+  padding: 2% 5%;
 }
 
 a {
@@ -158,6 +160,7 @@ a {
   }
 
   .page-section {
-    max-width: 60%;
+    left: unset;
+    width: unset;
   }
 }

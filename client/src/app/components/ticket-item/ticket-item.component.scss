@@ -11,8 +11,10 @@
       align-items: center;
       font-size: 16px;
       border: 0;
-      background: $light-grey;
+      background: $dark-rose;
+      color: $dark-black;
       cursor: pointer;
+      border: $border;
       border-radius: 4px;
       padding: 6px 12px;
 
@@ -23,13 +25,17 @@
       p {
         margin-right: 8px;
       }
+
+      &:hover {
+        background: $light-rose;
+      }
     }
   }
 
   .ticket-content-section {
     display: flex;
     flex-direction: column;
-    background-color: $white;
+    background-color: $dark-cream;
     padding: 20px;
     border-radius: $sm-radius;
     border: $border;
@@ -52,14 +58,14 @@
 
         h3, span {
           font-size: 14px;
-          color: $dark-grey;
+          color: $dark-black-trans;
         }
       }
     }
 
     p {
       padding-top: 15px;
-      color: $dark-grey;
+      color: $light-black;
     }
   }
 
@@ -71,7 +77,7 @@
   }
 
   .ticket-response-section {
-    background-color: $white;
+    background-color: $dark-cream;
     padding: 20px;
     border-radius: $sm-radius;
     border: $border;
@@ -99,7 +105,7 @@
           }
 
           input[type="radio"]:checked {
-            accent-color: $brown;
+            accent-color: $dark-black;
           }
         }
       }
@@ -115,6 +121,16 @@
         width: 100%;
         border-radius: 3px;
         border: $border;
+        background: $cream;
+      }
+
+      form input,
+      form textarea {
+        color: $light-black;
+
+        &:focus {
+          outline: none;
+        }
       }
 
       footer {
@@ -122,19 +138,24 @@
         justify-content: flex-end;
         padding-top: 10px;
 
-        input[type="submit"] {
-          font-size: 16px;
-          background: $dark-brown;
-          color: white;
-          cursor: pointer;
-          min-width: 100px;
-          padding: 0.8em;
+        button {
+          display: flex;
+          align-items: center;
+          background: $dark-rose;
+          color: $dark-black;
           border: 0;
+          border: $border;
           border-radius: 4px;
-          text-align: center;
+          font-size: 16px;
+          padding: 6px 12px;
+          cursor: pointer;
+
+          span {
+            margin-right: 8px;
+          }
 
           &:hover {
-            background: $darkest-brown;
+            background: $light-rose;
           }
         }
       }

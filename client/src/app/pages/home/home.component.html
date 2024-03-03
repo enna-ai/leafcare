@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <section>
   <app-create-form *ngIf="!ticketSubmitted" [ngClass]="{'hide-form': ticketSubmitted}" (formSubmitted)="createTicket($event)"></app-create-form>
 

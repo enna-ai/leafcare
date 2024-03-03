@@ -12,6 +12,7 @@ import { SidebarService } from '../../services/sidebar.service';
 export class SidebarComponent implements OnInit {
   openSidebar: boolean = true;
   sidebarService = inject(SidebarService);
+  activeMenuitem: HTMLElement | null = null;
 
   menuSidebar = [
     {
@@ -101,7 +102,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() { }
 
   showSubmenu(item: HTMLElement) {
-    item.classList.toggle("showMenu")
+    item.classList.toggle("showMenu");
   }
 
   selectItem(value: string | null) {
