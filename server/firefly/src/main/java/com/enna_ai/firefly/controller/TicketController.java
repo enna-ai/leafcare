@@ -7,6 +7,7 @@ import com.enna_ai.firefly.repository.TicketRepository;
 import com.enna_ai.firefly.service.email.EmailService;
 import com.enna_ai.firefly.service.ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,9 @@ public class TicketController {
     private final TicketService ticketService;
     private final EmailService emailService;
 
+    @Value("${spring.mail.username}")
+    private String senderEmail;
+
     @Autowired
     private TicketRepository repository;
 
@@ -35,9 +39,9 @@ public class TicketController {
         TicketModel createdTicket = ticketService.createTicket(ticket);
 
         EmailModel emailModel = new EmailModel();
-        emailModel.setSender("annelee3322@gmail.com");
+        emailModel.setSender(senderEmail);
         emailModel.setRecipient(ticket.getEmail());
-        emailModel.setSubject("Ticket Created");
+        emailModel.setSubject("[Firefly] Ticket #" + createdTicket.getId());
         emailModel.setBody("Your ticket has been successfully created!");
 
         emailService.sendEmail(emailModel);
@@ -53,9 +57,9 @@ public class TicketController {
         String userEmail = ticket.getEmail();
 
         EmailModel emailModel = new EmailModel();
-        emailModel.setSender("annelee3322@gmail.com");
+        emailModel.setSender(senderEmail);
         emailModel.setRecipient(userEmail);
-        emailModel.setSubject("Response to your ticket");
+        emailModel.setSubject("[Firefly] Re: #" + id);
         emailModel.setBody(responseBody);
 
         emailService.sendEmail(emailModel);
