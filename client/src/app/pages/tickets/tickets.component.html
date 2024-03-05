@@ -1,42 +1,47 @@
-<!-- <section> -->
 <div class="page-section">
   <div>
     <app-sidebar></app-sidebar>
   </div>
 
-  <div>
+  <div class="tickets-container">
+    <div class="search-container">
+      <form>
+        <span class="material-symbols-outlined search">search</span>
+        <input type="text" placeholder="Search..." name="search">
+      </form>
+    </div>
     <div *ngIf="tickets.length > 0">
       <div class="container-tickets">
         <table>
           <thead>
             <tr>
-              <th>
+              <!-- <th>
                 <input type="checkbox">
-              </th>
-              <th scope="col">ID</th>
-              <th scope="col">Username</th>
-              <th scope="col">Email</th>
-              <th scope="col">Subject</th>
-              <th scope="col">Category</th>
-              <th scope="col">Status</th>
-              <th scope="col">Priority</th>
-              <th scope="col">Created</th>
+              </th> -->
+              <th scope="col">Ticket ID</th>
+              <!-- <th scope="col">Username</th> -->
+              <!-- <th scope="col">Email</th> -->
+              <th scope="col" class="show">Subject</th>
+              <th scope="col" class="hide">Category</th>
+              <th scope="col" class="hide">Status</th>
+              <th scope="col" class="hide">Priority</th>
+              <th scope="col" class="show">Created</th>
             </tr>
           </thead>
 
           <tbody>
             <tr *ngFor="let ticket of filteredTickets" (click)="viewTicket(ticket.id)">
-              <td>
+              <!-- <td>
                 <input type="checkbox" [value]="ticket.id" (change)="onCheckboxChange($event, ticket.id)">
-              </td>
-              <td>{{ ticket.id.slice(0, 5)}}</td>
-              <td>{{ ticket.username }}</td>
-              <td>{{ ticket.email }}</td>
-              <td>{{ ticket.subject.slice(0, 20) + '...' }}</td>
-              <td>{{ formatString(ticket.category.toLowerCase()) }}</td>
-              <td>{{ formatString(ticket.status.toLowerCase()) }}</td>
-              <td>{{ ticket.priority.toLowerCase() }}</td>
-              <td>{{ formatDate(ticket.createdAt)}}</td>
+              </td> -->
+              <td class="show">{{ ticket.id.slice(0, 5)}}</td>
+              <!-- <td>{{ ticket.username }}</td> -->
+              <!-- <td>{{ ticket.email }}</td> -->
+              <td class="show">{{ ticket.subject.slice(0, 20) + '...' }}</td>
+              <td class="hide">{{ formatString(ticket.category.toLowerCase()) }}</td>
+              <td class="hide">{{ formatString(ticket.status.toLowerCase()) }}</td>
+              <td class="hide">{{ ticket.priority.toLowerCase() }}</td>
+              <td class="show">{{ formatDate(ticket.createdAt)}}</td>
             </tr>
           </tbody>
         </table>
@@ -49,4 +54,3 @@
     </div>
   </div>
 </div>
-<!-- </section> -->

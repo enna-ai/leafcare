@@ -6,7 +6,7 @@
   left: 0;
   height: 100%;
   width: 260px;
-  background: $dark-cream;
+  background: $tertiary;
   z-index: 100;
   border-right: $border;
 
@@ -31,11 +31,11 @@
         align-items: center;
         text-decoration: none;
         width: 100%;
-        color: $dark-black;
+        color: $text;
 
         span {
           font-size: 22px;
-          color: $dark-black;
+          color: $text;
         }
 
         .link_name {
@@ -46,7 +46,6 @@
 
       .sub-menu {
         padding: 6px 6px 14px 70px;
-        // background: $dark-cream;
         display: none;
 
         a {
@@ -57,6 +56,18 @@
 
         li {
           padding-left: 10px;
+
+          a {
+            &:hover {
+              text-decoration: underline;
+              color: $text-bright;
+            }
+          }
+
+          &:hover {
+            background-color: $secondary;
+            border: $border;
+          }
         }
 
         .link_name {
@@ -81,10 +92,6 @@
       display: block;
     }
 
-    .dropdown-title.active {
-      background-color: red;
-    }
-
     .dropdown-title {
       width: 260px;
       overflow: hidden;
@@ -105,7 +112,7 @@
     width: fit-content;
   }
 
-  @media (max-width: 600px) {
+  @media screen and (max-width: 999px) {
     display: none;
   }
 }

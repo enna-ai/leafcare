@@ -11,8 +11,8 @@
       align-items: center;
       font-size: 16px;
       border: 0;
-      background: $dark-rose;
-      color: $dark-black;
+      background: $accent1;
+      color: $text;
       cursor: pointer;
       border: $border;
       border-radius: 4px;
@@ -27,7 +27,7 @@
       }
 
       &:hover {
-        background: $light-rose;
+        background: $accent1-light;
       }
     }
   }
@@ -35,7 +35,7 @@
   .ticket-content-section {
     display: flex;
     flex-direction: column;
-    background-color: $dark-cream;
+    background-color: $tertiary;
     padding: 20px;
     border-radius: $sm-radius;
     border: $border;
@@ -58,14 +58,14 @@
 
         h3, span {
           font-size: 14px;
-          color: $dark-black-trans;
+          color: $text-trans;
         }
       }
     }
 
     p {
       padding-top: 15px;
-      color: $light-black;
+      color: $text;
     }
   }
 
@@ -77,7 +77,7 @@
   }
 
   .ticket-response-section {
-    background-color: $dark-cream;
+    background-color: $tertiary;
     padding: 20px;
     border-radius: $sm-radius;
     border: $border;
@@ -96,6 +96,7 @@
 
         form {
           display: flex;
+          flex-direction: row;
           gap: 10px;
 
           .ticket-radios {
@@ -105,9 +106,15 @@
           }
 
           input[type="radio"]:checked {
-            accent-color: $dark-black;
+            accent-color: $accent1-dark;
           }
         }
+      }
+
+      @media screen and (max-width: 800px) {
+        flex-direction: column;
+        padding-bottom: 20px;
+        gap: 15px;
       }
     }
 
@@ -121,12 +128,12 @@
         width: 100%;
         border-radius: 3px;
         border: $border;
-        background: $cream;
+        background: $secondary;
       }
 
       form input,
       form textarea {
-        color: $light-black;
+        color: $text;
 
         &:focus {
           outline: none;
@@ -141,8 +148,8 @@
         button {
           display: flex;
           align-items: center;
-          background: $dark-rose;
-          color: $dark-black;
+          background: $accent1;
+          color: $text;
           border: 0;
           border: $border;
           border-radius: 4px;
@@ -155,7 +162,7 @@
           }
 
           &:hover {
-            background: $light-rose;
+            background: $accent1-light;
           }
         }
       }

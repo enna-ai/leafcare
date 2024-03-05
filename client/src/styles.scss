@@ -35,7 +35,7 @@ $client-theme: mat.define-light-theme((color: (primary: $client-primary,
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: red;
+  background-color: $tertiary;
 }
 
 *::-webkit-scrollbar {
@@ -48,8 +48,8 @@ $client-theme: mat.define-light-theme((color: (primary: $client-primary,
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: $dark-cream;
-  border: 3px solid $cream;
+  background-color: $tertiary;
+  border: 3px solid $primary;
   border-radius: 10px;
 }
 
@@ -73,8 +73,8 @@ body {
 }
 
 body {
-  background-color: $cream;
-  color: $dark-black;
+  background-color: $primary;
+  color: $text;
 
   width: 100%;
   min-height: 100vh;
@@ -101,13 +101,13 @@ nav {
   display: flex;
   height: 64px;
   justify-content: space-between;
-  background: $dark-cream;
+  background: $tertiary;
   border-bottom: $border;
 
   div {
-    a, .material-symbols-outlined {
+    span.material-symbols-outlined {
       font-size: 40px;
-      color: $dark-black;
+      color: $text;
     }
   }
 
@@ -119,11 +119,15 @@ nav {
     justify-content: center;
     overflow: hidden;
     list-style-type: none;
-    gap: 30px;
+    gap: 25px;
 
     li, a {
       font-size: 16px;
-      color: $dark-black;
+      color: $text;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
@@ -137,13 +141,12 @@ section {
 .page-section {
   position: relative;
   height: 100vh;
-  left: 260px;
+  left: 250px;
   width: calc(100% - 260px);
   padding: 2% 5%;
 }
 
 a {
-  color: #262626;
   text-decoration: none;
   text-align: center;
   transition: $transition;
@@ -159,8 +162,15 @@ a {
     $horizontal-margin: 5%;
   }
 
+  nav {
+    padding: 5%;
+  }
+}
+
+@media screen and (max-width: 999px) {
   .page-section {
     left: unset;
-    width: unset;
+    width: 100%;
+    padding: 5%;
   }
 }

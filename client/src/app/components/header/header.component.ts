@@ -11,8 +11,8 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
 
   routes = [
-    { path: '/terms', label: 'Terms of Service' },
-    { path: '/policy', label: 'Privacy Policy' },
+    { path: '/terms', label: 'Terms' },
+    { path: '/policy', label: 'Policy' },
     { path: '/faq', label: 'FAQ' },
     { path: '/signin', label: 'Sign In' },
   ]

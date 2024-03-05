@@ -35,8 +35,8 @@ form {
     text-indent: 10px;
     border-radius: 3px;
     border: $border;
-    background: $dark-cream;
-    color: $light-black;
+    background: $tertiary;
+    color: $text;
 
     @media screen and (max-width: 800px) {
       max-width: 100%;
@@ -47,7 +47,7 @@ form {
     font-size: 16px;
     display: block;
     white-space: nowrap;
-    color: $light-black;
+    color: $text-trans;
   }
 
   .form-group > textarea {
@@ -75,12 +75,12 @@ form {
     position: relative;
 
     span a {
-      color: $light-black;
+      color: $text;
     }
   }
 
   .attach-form-optional {
-    color: $light-black;
+    color: $text-trans;
   }
 }
 
@@ -92,21 +92,23 @@ footer {
 
   input[type="submit"] {
     font-size: 16px;
-    background: $dark-red;
-    color: $dark-black;
+    background: $accent1;
+    color: $text;
     cursor: pointer;
     min-width: 190px;
     padding: 0.8em;
     border: 0;
     border-radius: 4px;
     text-align: center;
+    border: $border;
 
     &:hover {
-      background: $dark-rose;
+      background: $accent1-light;
     }
   }
 
   @media screen and (max-width: 800px) {
     max-width: 100%;
+    justify-content: center;
   }
 }
