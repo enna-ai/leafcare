@@ -5,11 +5,17 @@ import com.enna_ai.firefly.model.Token;
 import com.enna_ai.firefly.model.User;
 import com.enna_ai.firefly.repository.TokenRepository;
 import com.enna_ai.firefly.repository.UserRepository;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -66,6 +72,10 @@ public class AuthenticationService {
         saveUserToken(jwt, user);
 
         return new AuthenticationResponse(jwt, "User login was successful.");
+    }
+
+    public void logout() {
+        SecurityContextHolder.clearContext();
     }
 
     private void revokeAllTokenByUser(User user) {

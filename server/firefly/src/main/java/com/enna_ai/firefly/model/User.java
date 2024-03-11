@@ -32,10 +32,10 @@ public class User implements UserDetails {
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    @Column(name = "createdAt")
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Column(name = "lastUpdatedAt")
+    @Column(name = "last_updated_at")
     private LocalDateTime lastUpdatedAt;
 
     @PrePersist
@@ -43,7 +43,6 @@ public class User implements UserDetails {
         createdAt = LocalDateTime.now();
         lastUpdatedAt = createdAt;
     }
-
     @PreUpdate
     protected void onUpdate() {
         lastUpdatedAt = LocalDateTime.now();
