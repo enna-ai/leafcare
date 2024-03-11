@@ -9,5 +9,4 @@ public class FireflyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FireflyApplication.class, args);
 	}
-
 }

@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/firefly
+    username: firefly
+    password: firefly
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  secret:
+    key: d88cb431f51fcb4f463b52cf1b008eb7277db54bfbcfc357060776ccafa2278b
+
+server:
+  port: 8080
