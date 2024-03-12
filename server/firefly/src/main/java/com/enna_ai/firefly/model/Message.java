@@ -1,6 +1,6 @@
 package com.enna_ai.firefly.model;
 
-import com.enna_ai.firefly.enums.RespondentType;
+import com.enna_ai.firefly.enums.Role;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -14,14 +14,18 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(name = "subject")
+    private String subject;
+
     @Column(name = "content")
     private String content;
 
-    @Column(name = "is_ready")
-    private boolean isRead;
+    @Column(name = "is_read")
+    private boolean isRead = false;
 
     @Enumerated(EnumType.STRING)
-    private RespondentType respondentType;
+    @Column(name = "respondent_type")
+    private Role respondentType;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -45,6 +49,14 @@ public class Message {
         this.id = id;
     }
 
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
     public String getContent() {
         return content;
     }
@@ -53,12 +65,20 @@ public class Message {
         this.content = content;
     }
 
-    public boolean getIsRead() {
+    public boolean isRead() {
         return isRead;
     }
 
-    public void setIsRead(boolean isRead) {
-        this.isRead = isRead;
+    public void setRead(boolean read) {
+        isRead = read;
+    }
+
+    public Role getRespondentType() {
+        return respondentType;
+    }
+
+    public void setRespondentType(Role respondentType) {
+        this.respondentType = respondentType;
     }
 
     public LocalDateTime getCreatedAt() {

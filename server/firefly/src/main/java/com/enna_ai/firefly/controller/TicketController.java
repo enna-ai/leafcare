@@ -31,7 +31,7 @@ public class TicketController {
         this.emailService = emailService;
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<Ticket> createNewTicket(@RequestBody Ticket ticket, Authentication authentication) throws MessagingException {
         User user = (User) authentication.getPrincipal();
         String userEmailAddress = user.getEmail();
@@ -53,7 +53,7 @@ public class TicketController {
         return ResponseEntity.ok(createdTicket);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<Ticket>> getAllTickets() {
         List<Ticket> tickets = ticketRepository.findAll();
         return ResponseEntity.ok(tickets);

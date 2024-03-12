@@ -20,4 +20,8 @@ public class MessageServiceImpl implements MessageService {
         return repository.findMessageById(id)
                 .orElseThrow(() -> new NoSuchElementException("Message ID not found."));
     }
+
+    public Message createMessage(Message message) {
+        return repository.save(message);
+    }
 }

@@ -37,7 +37,7 @@ public class Ticket {
     private TicketStatus status = TicketStatus.OPEN;
 
     @Column(name = "is_archived")
-    private boolean isArchived;
+    private boolean isArchived = false;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

@@ -25,7 +25,7 @@ public class UserController {
         this.userDetailsService = userDetailsService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userRepository.findAll();
         return ResponseEntity.ok(users);
