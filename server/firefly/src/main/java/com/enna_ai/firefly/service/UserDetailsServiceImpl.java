@@ -26,6 +26,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found."));
     }
 
+    public UserDetails loadUserByEmail(String email) {
+        return repository.findByEmail(email)
+                .orElseThrow(() -> new NoSuchElementException("User email not found."));
+    }
+
     public UserDetails loadUserById(UUID id) {
         return repository.findUserById(id)
                 .orElseThrow(() -> new NoSuchElementException("User Id not found."));

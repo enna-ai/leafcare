@@ -6,6 +6,8 @@ import java.util.UUID;
 
 public interface TicketService {
 
+    Ticket createNewTicket(Ticket ticket);
+
     Ticket getTicketById(UUID id);
 
     Ticket updateTicketById(UUID id, Ticket updatedTicket);

@@ -116,6 +116,14 @@ public class User implements UserDetails {
         this.role = role;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getLastUpdatedAt() {
+        return lastUpdatedAt;
+    }
+
     public List<Token> getTokens() {
         return tokens;
     }

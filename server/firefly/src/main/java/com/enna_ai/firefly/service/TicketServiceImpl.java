@@ -19,6 +19,10 @@ public class TicketServiceImpl implements TicketService {
         this.repository = repository;
     }
 
+    public Ticket createNewTicket(Ticket ticket) {
+        return repository.save(ticket);
+    }
+
     public Ticket getTicketById(UUID id) {
         return repository.findTicketById(id)
                 .orElseThrow(() -> new NoSuchElementException("Ticket ID not found."));
